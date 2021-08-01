@@ -1,0 +1,27 @@
+version: 2
+
+projects:
+
+  - name: firewall_rules
+    workflow: terraform
+    dir: firewall_rules
+    workspace: default
+    terraform_version: v0.14.5
+    autoplan:
+      when_modified:
+      - ".envrc"
+      - "tfvars.json"
+      enabled: true
+    apply_requirements:
+    - approved
+
+workflows:
+  terraform:
+    plan:
+      steps:
+        - run: 'source .envrc && mkdir -p tfcache \
+        && terraform init -input=false -no-color -backend-config="bucket=${GCP_PROJECT}-tfstate" -backend-config="prefix=terraform/firewall_rule" tfcache \
+        && terraform plan -refresh=true -no-color -var-file=tfvars.json -out plan.tfplan tfcache'
+    apply:
+      steps:
+        - run: 'terraform apply plan.tfplan -no-color && rm plan.tfplan'
