@@ -16,6 +16,8 @@ export TF_CLI_ARGS_init="-from-module=git::git@github.com:andreistefanciprian/de
 ## How to run terraform
 
 ```bash
+cd firewall_rules
+
 # load env vars
 source .envrc
 # or
