@@ -19,7 +19,7 @@ workflows:
   terraform:
     plan:
       steps:
-        - run: 'source .envrc && make plan'
+        - run: "source .envrc && make plan"
     apply:
       steps:
-        - run: make apply
+        - run: "source .envrc && make apply"
