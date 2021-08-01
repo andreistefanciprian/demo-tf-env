@@ -19,9 +19,7 @@ workflows:
   terraform:
     plan:
       steps:
-        - run: 'source .envrc && mkdir -p tfcache \
-        && terraform init -input=false -no-color -backend-config="bucket=${GCP_PROJECT}-tfstate" -backend-config="prefix=terraform/firewall_rule" tfcache \
-        && terraform plan -refresh=true -no-color -var-file=tfvars.json -out plan.tfplan tfcache'
+        - run: "source .envrc && make plan"
     apply:
       steps:
-        - run: 'terraform apply plan.tfplan -no-color && rm plan.tfplan'
+        - run: "source .envrc && make apply"

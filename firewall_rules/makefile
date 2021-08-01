@@ -9,7 +9,6 @@ clean:
 	@rm -Rf $(TF_DIR)
 
 init: clean
-	rm -Rf $(TF_DIR)
 	mkdir -p $(TF_DIR)    
 	$(TF_EXEC) init \
 	-no-color \
@@ -21,7 +20,7 @@ init: clean
 plan: init
 	$(TF_EXEC) plan -no-color -refresh=true -var-file=$(TF_VARFILE) -out $(TF_PLANFILE) $(TF_DIR)
 
-apply: init
+apply:
 	$(TF_EXEC) apply $(TF_PLANFILE) -no-color && rm $(TF_PLANFILE)
 
 destroy: init
