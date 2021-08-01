@@ -23,5 +23,8 @@ plan: init
 apply:
 	$(TF_EXEC) apply $(TF_PLANFILE) -no-color && rm $(TF_PLANFILE)
 
+auto-apply: init
+	$(TF_EXEC) apply -no-color -input=false -auto-approve -var-file=$(TF_VARFILE) $(TF_DIR)
+
 destroy: init
 	$(TF_EXEC) destroy -no-color -input=false -auto-approve -var-file=$(TF_VARFILE) $(TF_DIR)
