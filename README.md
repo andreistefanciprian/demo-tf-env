@@ -26,11 +26,14 @@ direnv allow .
 # store gcp service account credentials path as env var
 export GOOGLE_APPLICATION_CREDENTIALS="$HOME/${GCP_PROJECT}-sa.json"
 
-# check plan infra
+# create terraform plan
 make plan
 
-# build infra
+# build terraform infra
 make apply
+
+# optional: build terraform infra without prior plan (auto-approve)
+make auto-apply
 
 # destroy infra make destroy
 make destroy
