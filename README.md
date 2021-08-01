@@ -13,7 +13,7 @@ The terraform repository is used for building the infrastructure is loaded from 
 export TF_CLI_ARGS_init="-from-module=git::git@github.com:andreistefanciprian/demo-tf-code.git//firewall_rules?ref=tags/0.0.2"
 ```
 
-## How to run terraform
+## How to run terraform manually
 
 ```bash
 cd firewall_rules
