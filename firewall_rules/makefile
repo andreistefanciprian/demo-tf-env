@@ -9,7 +9,6 @@ clean:
 	@rm -Rf $(TF_DIR)
 
 init: clean
-	rm -Rf $(TF_DIR)
 	mkdir -p $(TF_DIR)    
 	$(TF_EXEC) init \
 	-no-color \
